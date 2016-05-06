@@ -1,0 +1,5 @@
+---
+classes:
+  - role::all_in_one_pe
+
+puppet_enterprise::master::puppetserver::jruby_max_requests_per_instance: 0
