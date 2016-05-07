@@ -1,5 +1,3 @@
-class role::webserver {
-
+class role::base {
   include profile::base
-
 }

@@ -23,7 +23,12 @@ File { backup => false }
 # definition. If there are no other nodes in this file, classes declared here
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
-
+case $operatingsystem {
+  'windows':
+    Package { provider => chocolatey, }
+    Exec { path => ['C:\Windows\sysnative\WindowsPowershell\v1.0','C:\Windows\System32\inetsrv',
+                   'C:\Windows\Sysnative','C:\Temp']}
+}
 node default {
 }
 
