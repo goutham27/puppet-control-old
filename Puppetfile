@@ -1,6 +1,7 @@
 forge "http://forge.puppetlabs.com"
 
 mod "puppetlabs/concat",   '2.1.0'
+mod 'hunner/hiera',        '2.0.1'
 mod "puppetlabs/firewall", '1.8.0'
 mod "puppetlabs/java",     '1.5.0'
 mod "puppetlabs/motd",     '1.4.0'

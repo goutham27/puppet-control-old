@@ -1,0 +1,39 @@
+---
+roles:
+  pe-puppet-master:
+    provider:
+      type: virtualbox
+      customize:
+        - [modifyvm, !ruby/sym id, '--memory', 4096]
+    provisioners:
+      -
+        type: hosts
+        add_localhost_hostnames: false
+        sync_hosts: true
+      - type: shell
+        inline: |-
+          /bin/systemctl stop firewalld
+      -
+        type: pe_bootstrap
+        role: !ruby/sym master
+      -
+        type: shell
+        inline: |-
+          /usr/local/bin/puppet module install zack-r10k
+          /usr/local/bin/puppet module install abrader-gms
+          /usr/local/bin/puppet apply /vagrant/r10k_installation.pp
+          /usr/local/bin/r10k deploy environment -pv
+          /bin/echo '==> puppet config set hiera_config /etc/puppetlabs/code/environments/production/hiera.yaml'
+          /usr/local/bin/puppet config set hiera_config /etc/puppetlabs/code/environments/production/hiera.yaml
+          /bin/echo '==> /bin/systemctl restart pe-puppetserver'
+          /bin/systemctl restart pe-puppetserver
+          /bin/echo '==> /usr/local/bin/puppet agent -t'
+          /usr/local/bin/puppet agent -t || true
+          /sbin/service puppet stop
+  pe-puppet-agent:
+    provider:
+      type: virtualbox
+      customize:
+       - [modifyvm, !ruby/sym id, '--memory', 1024]
+    provisioners:
+      - type: hosts

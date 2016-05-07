@@ -1,0 +1,13 @@
+---
+vms:
+- name: master
+  box: puppetlabs/centos-7.2-64-nocm
+  private_networks: [ {ip: '10.20.1.10'}]
+  hostname: puppetmaster.vm
+  roles:
+  - pe-puppet-master
+- name: first
+  box: vagrant-win2012r2
+  private_networks: [ {ip: '10.20.1.12'}]
+  roles:
+  - pe-puppet-agent
