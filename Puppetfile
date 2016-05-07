@@ -8,7 +8,7 @@ mod "puppetlabs/ntp",      '4.1.2'
 mod "puppetlabs/stdlib",   '4.11.0'
 mod "puppetlabs/inifile",  '1.5.0'
 mod "puppetlabs/vcsrepo",  '1.3.2'
-mod "puppetlabs/windows"   '2.2.0'
+mod "puppetlabs/windows",  '2.2.0'
 
 
 #mod 'apache',
